@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:google_fonts/google_fonts.dart';
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
 
@@ -25,15 +27,16 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               title: Container(
                 margin: const EdgeInsets.all(16),
-                height: 200,
+                height: 100,
                 child: Scaffold(
                   key: key,
                   backgroundColor: Colors.black12,
                   body: Center(
                     child: Text(
                       index.toString(),
-                      style: const TextStyle(
+                      style: GoogleFonts.sawarabiMincho(
                         fontSize: 60,
+                        color: Colors.blueAccent,
                       ),
                     ),
                   ),
