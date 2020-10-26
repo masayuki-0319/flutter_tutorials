@@ -35,8 +35,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget get _buildEmailField {
-    return TextField(
+    return TextFormField(
       decoration: InputDecoration(labelText: 'Email'),
+      onSaved: (String val) => _loginObject['email'] = val,
+      validator: _validateEmail,
     );
   }
 
@@ -64,6 +66,18 @@ class _MyHomePageState extends State<MyHomePage> {
         const Text('規約に同意します'),
       ],
     );
+  }
+
+  String _validateEmail(String email) {
+    RegExp regex = RegExp(r'\w+@\w+\.\w+');
+
+    if (email.isEmpty) {
+      return 'メールアドレスを入力してください';
+    } else if (!regex.hasMatch(email)) {
+      return '許可された形式ではありません';
+    } else {
+      return null;
+    }
   }
 
   void _doRegister() {
