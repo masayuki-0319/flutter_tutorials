@@ -22,10 +22,10 @@ class _MyHomePageState extends State<MyHomePage> {
               _buildPasswordField,
               _buildPasswordConfirmationField,
               _buildAgreeToTermsField,
-            ],
-          )),
-      floatingActionButton:
-          FloatingActionButton(onPressed: _doRegister, child: Icon(Icons.save)),
+            ],)),
+      floatingActionButton: FloatingActionButton(
+          onPressed: _doRegister,
+          child: Icon(Icons.save)),
     );
   }
 
