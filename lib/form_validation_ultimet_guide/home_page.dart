@@ -14,15 +14,16 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('登録画面')),
-      body: Container(
-          alignment: Alignment.center,
-          child: Column(
-            children: <Widget>[
-              _buildEmailField,
-              _buildPasswordField,
-              _buildPasswordConfirmationField,
-              _buildAgreeToTermsField,
-            ],)),
+      body: Form(
+          child: Container(
+            alignment: Alignment.center,
+            child: Column(
+              children: <Widget>[
+                _buildEmailField,
+                _buildPasswordField,
+                _buildPasswordConfirmationField,
+                _buildAgreeToTermsField,
+              ],)),),
       floatingActionButton: FloatingActionButton(
           onPressed: _doRegister,
           child: Icon(Icons.save)),
