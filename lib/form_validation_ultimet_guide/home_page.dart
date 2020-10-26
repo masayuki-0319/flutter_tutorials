@@ -6,6 +6,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  GlobalKey<FormState> _key = GlobalKey<FormState>();
+  
   Map<String, String> _loginObject = Map<String, String>();
   String _pass1;
   bool _agree = false;
@@ -15,7 +17,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(title: Text('登録画面')),
       body: Form(
-          child: Container(
+        key: _key,
+        child: Container(
             alignment: Alignment.center,
             child: Column(
               children: <Widget>[
@@ -23,10 +26,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 _buildPasswordField,
                 _buildPasswordConfirmationField,
                 _buildAgreeToTermsField,
-              ],)),),
-      floatingActionButton: FloatingActionButton(
-          onPressed: _doRegister,
-          child: Icon(Icons.save)),
+              ],
+            )),
+      ),
+      floatingActionButton:
+          FloatingActionButton(onPressed: _doRegister, child: Icon(Icons.save)),
     );
   }
 
@@ -55,8 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Column(
       children: <Widget>[
         Checkbox(
-          value: _agree,
-          onChanged: (bool val) => setState(() => _agree = val)),
+            value: _agree,
+            onChanged: (bool val) => setState(() => _agree = val)),
         const Text('規約に同意します'),
       ],
     );
