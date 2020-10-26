@@ -7,7 +7,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   GlobalKey<FormState> _key = GlobalKey<FormState>();
-  
+
   Map<String, String> _loginObject = Map<String, String>();
   String _pass1;
   bool _agree = false;
@@ -67,9 +67,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _doRegister() {
-    print("""
-    Registerd new user
+    if (_key.currentState.validate()) {
+      _key.currentState.save();
+      print("""
+      Registerd new user
       email: '${_loginObject['email']}', password: '${_loginObject['password']}'
-    """);
+      """);
+    }
   }
 }
