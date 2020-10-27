@@ -52,9 +52,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget get _buildPasswordConfirmationField {
-    return TextField(
+    return TextFormField(
       decoration: InputDecoration(labelText: 'Password (again)'),
       obscureText: true,
+      validator: _validatePasswordConfirmation,
     );
   }
 
@@ -103,6 +104,14 @@ class _MyHomePageState extends State<MyHomePage> {
       return 'パスワードは、記号も含めて入力してください';
     }
     return null;
+  }
+
+  String _validatePasswordConfirmation(String pass2) {
+    if (pass2 == _pass1) {
+      return null;
+    } else {
+      return '[Password]のフィールドと値が異なります';
+    }
   }
 
   void _doRegister() {
