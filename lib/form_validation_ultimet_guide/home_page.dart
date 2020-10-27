@@ -46,7 +46,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Password'),
       obscureText: true,
-      onChanged: (String val) => _loginObject['password'] = val,
+      onChanged: (String val) => setState(() => _pass1 = val),
+      onSaved: (String val) => _loginObject['password'] = val,
       validator: _validatePassword,
     );
   }
@@ -60,14 +61,33 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget get _buildAgreeToTermsField {
-    return Column(
-      children: <Widget>[
-        Checkbox(
-            value: _agree,
-            onChanged: (bool val) => setState(() => _agree = val)),
-        const Text('規約に同意します'),
-      ],
+    return FormField<bool>(
+      initialValue: _agree,
+      builder: (FormFieldState<bool> state) {
+        return Column(
+          children: <Widget>[
+            Row(children: [
+              Checkbox(
+                  value: _agree,
+                  onChanged: (bool val) => setState(() => _agree = val)),
+              const Text('規約に同意します'),
+            ]),
+            state.errorText == null
+                ? Text('')
+                : Text(state.errorText, style: TextStyle(color: Colors.red)),
+          ],
+        );
+      },
+      validator: (val) => _validateTerms(_agree),
     );
+  }
+
+  String _validateTerms(bool agree) {
+    if (agree == true) {
+      return null;
+    } else {
+      return '登録には、規約の同意が必要になります';
+    }
   }
 
   String _validateEmail(String email) {
