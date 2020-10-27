@@ -43,10 +43,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget get _buildPasswordField {
-    return TextField(
+    return TextFormField(
       decoration: InputDecoration(labelText: 'Password'),
       obscureText: true,
-      onChanged: (String val) => setState(() => _pass1 = val),
+      onChanged: (String val) => _loginObject['password'] = val,
+      validator: _validatePassword,
     );
   }
 
@@ -78,6 +79,30 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       return null;
     }
+  }
+
+  String _validatePassword(String pass1) {
+    RegExp hasUpper = RegExp(r'[A-Z]');
+    RegExp hasLower = RegExp(r'[a-z]');
+    RegExp hasDigit = RegExp(r'\d');
+    RegExp hasPunct = RegExp(r'[!@#&*~-]');
+
+    if (!RegExp(r'.{8,}').hasMatch(pass1)) {
+      return 'パスワードは、８文字以上入力してください';
+    }
+    if (!hasUpper.hasMatch(pass1)) {
+      return 'パスワードは、大文字を含めて入力してください';
+    }
+    if (!hasLower.hasMatch(pass1)) {
+      return 'パスワードは、小文字を入力してください';
+    }
+    if (!hasDigit.hasMatch(pass1)) {
+      return 'パスワードは、数字を含めて入力してください';
+    }
+    if (!hasPunct.hasMatch(pass1)) {
+      return 'パスワードは、記号も含めて入力してください';
+    }
+    return null;
   }
 
   void _doRegister() {
