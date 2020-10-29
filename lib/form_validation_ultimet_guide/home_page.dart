@@ -83,11 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   String _validateTerms(bool agree) {
-    if (agree == true) {
-      return null;
-    } else {
-      return '登録には、規約の同意が必要になります';
-    }
+    return agree == true ? null : '登録には、規約の同意が必要になります';
   }
 
   String _validateEmail(String email) {
@@ -95,20 +91,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (email.isEmpty) {
       return 'メールアドレスを入力してください';
-    } else if (!regex.hasMatch(email)) {
-      return '許可された形式ではありません';
-    } else {
-      return null;
     }
+    if (!regex.hasMatch(email)) {
+      return '許可された形式ではありません';
+    }
+    return null;
   }
 
   String _validatePassword(String pass1) {
+    RegExp hasCount = RegExp(r'.{8,}');
     RegExp hasUpper = RegExp(r'[A-Z]');
     RegExp hasLower = RegExp(r'[a-z]');
     RegExp hasDigit = RegExp(r'\d');
     RegExp hasPunct = RegExp(r'[!@#&*~-]');
 
-    if (!RegExp(r'.{8,}').hasMatch(pass1)) {
+    if (!hasCount.hasMatch(pass1)) {
       return 'パスワードは、８文字以上入力してください';
     }
     if (!hasUpper.hasMatch(pass1)) {
@@ -127,11 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   String _validatePasswordConfirmation(String pass2) {
-    if (pass2 == _pass1) {
-      return null;
-    } else {
-      return '[Password]のフィールドと値が異なります';
-    }
+    return pass2 == _pass1 ? null : '[Password]のフィールドと値が異なります';
   }
 
   void _doRegister() {
