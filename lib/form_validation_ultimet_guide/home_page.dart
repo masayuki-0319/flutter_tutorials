@@ -11,12 +11,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Map<String, String> _loginObject = Map<String, String>();
   String _pass1;
   bool _agree = false;
+  AutovalidateMode _autovalidate = AutovalidateMode.disabled;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('登録画面')),
       body: Form(
+        autovalidateMode: _autovalidate,
         key: _key,
         child: Container(
             alignment: Alignment.center,
@@ -128,6 +130,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _doRegister() {
+    setState(() => _autovalidate = AutovalidateMode.onUserInteraction);
+
     if (_key.currentState.validate()) {
       _key.currentState.save();
       print("""

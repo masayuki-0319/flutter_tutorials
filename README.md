@@ -11,6 +11,9 @@ It is a practice record of the flutter tutorials.
 - 参考
   - [Flutter Forms Validation — the Ultimate Guide](https://medium.com/flutter-community/flutter-forms-validation-the-ultimate-guide-1b469169ca6e)
   - [Flutter WidgetにKeyが必要な理由, 仕組みについて \- Qiita](https://qiita.com/kurun_pan/items/f91228cf5c793ec3f3cc)
+- 注意1: Form Widget の autovalidate property が非推奨だった
+  - AutovalidateMode で代替する
+  - [AutovalidateMode enum \- widgets library \- Dart API](https://api.flutter.dev/flutter/widgets/AutovalidateMode-class.html)
 
 ### initial
 
