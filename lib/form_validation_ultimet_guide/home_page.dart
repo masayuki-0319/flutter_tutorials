@@ -12,6 +12,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _pass1;
   bool _agree = false;
   AutovalidateMode _autovalidate = AutovalidateMode.disabled;
+  FocusNode _emailFocusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
       decoration: InputDecoration(labelText: 'Email'),
       onSaved: (String val) => _loginObject['email'] = val,
       validator: _validateEmail,
+      autofocus: true,
+      focusNode: _emailFocusNode,
     );
   }
 
@@ -90,6 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String _validateEmail(String email) {
     RegExp regex = RegExp(r'\w+@\w+\.\w+');
+
+    if (email.isEmpty || !regex.hasMatch(email)) _emailFocusNode.requestFocus();
 
     if (email.isEmpty) {
       return 'メールアドレスを入力してください';
