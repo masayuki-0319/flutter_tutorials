@@ -21,20 +21,25 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Form(
         autovalidateMode: _autovalidate,
         key: _key,
-        child: Container(
-            alignment: Alignment.center,
+        child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 _buildEmailField,
                 _buildPasswordField,
                 _buildPasswordConfirmationField,
                 _buildAgreeToTermsField,
+                _buildSubmitButton,
               ],
             )),
       ),
-      floatingActionButton:
-          FloatingActionButton(onPressed: _doRegister, child: Icon(Icons.save)),
     );
+  }
+
+  Widget get _buildSubmitButton {
+    return SafeArea(
+      child: RaisedButton(
+        onPressed: _doRegister,
+        child: Text('登録する'),));
   }
 
   Widget get _buildEmailField {
